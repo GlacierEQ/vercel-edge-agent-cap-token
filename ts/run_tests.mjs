@@ -1,0 +1,10 @@
+import { mint, verify } from "./edge_cap.mjs";
+import assert from "node:assert/strict";
+const secret = "v-secret";
+const body = { q: 1 };
+const tok = mint(secret, "/api/agent", body, ["llm:complete"], 1000);
+const ok = verify(secret, tok, "/api/agent", body, "llm:complete", 900);
+assert.equal(ok.status, "ALLOW");
+const bad = verify(secret, tok, "/api/agent", { q: 2 }, "llm:complete", 900);
+assert.equal(bad.reason, "BODY_MISMATCH");
+console.log("ok");
