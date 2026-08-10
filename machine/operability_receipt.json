@@ -1,0 +1,29 @@
+{
+  "schema": "glaciereq.operability-receipt.v1",
+  "repository": "GlacierEQ/vercel-edge-agent-cap-token",
+  "at": "2026-08-10T04:12Z",
+  "source_sha": "700661ec1653f17e4bc237f7979f3dddf64a61fab1d907011e1b4305cfe199ed",
+  "entry": "scripts/operate.py",
+  "primary_output": {
+    "module": "edge_cap",
+    "ok": true,
+    "repository": "GlacierEQ/vercel-edge-agent-cap-token",
+    "smoke": {
+      "args": [
+        "'/api/elite'",
+        "{'k': 1}",
+        "frozenset({'read'})",
+        "1000000000000.0"
+      ],
+      "content_checked": true,
+      "invoked": true,
+      "kind": "class",
+      "method": "mint",
+      "module_local": true,
+      "name": "EdgeCapMint",
+      "result": "EdgeCapToken(path='/api/elite', body_digest='a0da1fce57d0e4f9f0ae4e4cbe040d34dcc046255c6c8d18e97f55aaed0655f0', capabilities=frozenset({'read'}), not_after=1000000000000.0, mac='695e015ac00eb9f238a89cb534f6558b7340d417e3f4a05060b2f0f2a4dbca91')"
+    }
+  },
+  "dual_run_ok": true,
+  "result": "PASS"
+}
