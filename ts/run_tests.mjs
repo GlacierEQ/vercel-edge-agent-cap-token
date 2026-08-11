@@ -21,8 +21,9 @@ assert.equal(vector.mac, expectedMac);
 assert.equal(verify(secret, vector, "/api/agent", nested, "tool:read", 999).status, "ALLOW");
 
 const delimiter = mint(secret, "/api/agent", body, ["a|b", "c"], 1000);
-const structurallyDifferent = { ...delimiter, capabilities: ["a", "b|c"] };
-assert.equal(verify(secret, structurallyDifferent, "/api/agent", body, "a", 900).reason, "BAD_MAC");
+assert.equal(verify(secret, { ...delimiter, capabilities: ["a", "b|c"] }, "/api/agent", body, "a", 900).reason, "BAD_MAC");
+const pathDelimiter = mint(secret, "/api|agent", body, ["llm:complete"], 1000);
+assert.equal(verify(secret, { ...pathDelimiter, path: "/api" }, "/api", body, "llm:complete", 900).reason, "BAD_MAC");
 
 for (const bad of [
   () => mint("", "/api/agent", body, ["llm:complete"], 1000),
