@@ -1,0 +1,46 @@
+{
+  "schema": "glaciereq.canonical-position.v1",
+  "repository": "GlacierEQ/vercel-edge-agent-cap-token",
+  "role": "CANONICAL_SPECIALIST",
+  "owns": "request_bound_edge_capability_authority",
+  "mechanism": {
+    "body_integrity": "recursively canonical cross-runtime body digest",
+    "authority_binding": "versioned structured HMAC payload binds path, body digest, canonical capability set, and finite expiry",
+    "verification": "fail-closed token-shape and request validation with constant-time MAC comparison",
+    "cross_runtime_equivalence": "Python and Node share exact digest and MAC vectors",
+    "replay_boundary": "same-request single-use replay prevention is intentionally not provided by this mechanism"
+  },
+  "does_not_own": [
+    "single-use nonce consumption or distributed replay ledger",
+    "external Vercel authorization state",
+    "deployment claim compilation",
+    "preview-to-production truth gating",
+    "Vercel affiliation, adoption, or production deployment"
+  ],
+  "relationships": [
+    {
+      "repository": "GlacierEQ/vercel-deploy-claim-compiler",
+      "relationship": "complementary deploy-claim evidence specialist",
+      "integration_exercised": false
+    },
+    {
+      "repository": "GlacierEQ/vercel-preview-truth-gate",
+      "relationship": "complementary environment-truth specialist",
+      "integration_exercised": false
+    }
+  ],
+  "integration_policy": {
+    "preserve_repository_identity": true,
+    "preserve_lineage": true,
+    "presentation_independent": true,
+    "absorption_requires_functional_equivalence": true,
+    "absorption_requires_proof_equivalence": true
+  },
+  "proof": {
+    "source_sha": "1b854a21c37767657b4c8622f69ad3b65ca0e6f5",
+    "workflow_run_id": 31450885196,
+    "jobs": ["py", "node"],
+    "result": "PASS"
+  },
+  "next_evolution": "add a separately tested single-use nonce consumption ledger and delegated capability attenuation without weakening current request-bound fail-closed semantics"
+}
