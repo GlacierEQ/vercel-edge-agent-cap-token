@@ -1,0 +1,29 @@
+{
+  "schema": "glaciereq.canonical-position-proof.v1",
+  "repository": "GlacierEQ/vercel-edge-agent-cap-token",
+  "source_sha": "1b854a21c37767657b4c8622f69ad3b65ca0e6f5",
+  "workflow": {
+    "name": "tests",
+    "run_id": 31450885196,
+    "conclusion": "success",
+    "jobs": ["py", "node"]
+  },
+  "verified_invariants": [
+    "nested request-body mutations change the digest in Python and Node",
+    "object key ordering does not change the digest",
+    "Python and Node share exact nested-body digest and token MAC vectors",
+    "the HMAC payload is structured and versioned rather than delimiter-joined",
+    "delimiter-bearing path or capability field changes cannot preserve a valid MAC across different token structure",
+    "empty or malformed paths, capabilities, token fields, secrets, and non-finite times fail closed",
+    "expired tokens fail closed and valid request-bound tokens allow",
+    "Node compares validated MAC bytes with crypto.timingSafeEqual"
+  ],
+  "claim_ceiling": "independent_reference_request_bound_capability_authority",
+  "replay_boundary": "same-request replay prevention is unsupported by this mechanism; single-use semantics require a separate tested consumption ledger",
+  "nonclaims": [
+    "no Vercel affiliation or adoption",
+    "no production deployment",
+    "no external Vercel authorization-state verification",
+    "no single-use replay protection claim"
+  ]
+}

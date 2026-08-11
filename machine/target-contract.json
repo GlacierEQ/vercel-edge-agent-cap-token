@@ -2,21 +2,65 @@
   "schema": "glaciereq.repo-target-contract.v1",
   "identity": {
     "repository_id": "GlacierEQ/vercel-edge-agent-cap-token",
-    "family": "elite-estate"
+    "family": "elite-estate",
+    "canonical_identity": "request-bound-edge-capability-token"
   },
   "current": {
-    "state": "PROMOTED",
+    "state": "EVOLVING",
+    "principal_state": "EVOLVING",
     "implemented": true,
     "tested": true,
-    "deployed": false
+    "deployed": false,
+    "canonical_position_resolved": true,
+    "external_claim_ceiling": "PROMOTED",
+    "exact_head_proof": {
+      "source_sha": "1b854a21c37767657b4c8622f69ad3b65ca0e6f5",
+      "workflow_run_id": 31450885196,
+      "jobs": ["py", "node"],
+      "result": "PASS"
+    }
   },
+  "target": {
+    "purpose": "Issue short-lived request-bound capabilities whose authority fails closed when request path, recursively canonicalized body, capability set, MAC, or expiry does not match the signed token.",
+    "central_bottleneck": "Cross-runtime capability tokens are unsafe to canonicalize if nested body serialization, field encoding, time validation, or MAC comparison can diverge between implementations.",
+    "canonical_hardening_gate": [
+      "Python and Node recursively canonicalize equivalent nested JSON bodies to the same digest.",
+      "Object key ordering does not change the body digest.",
+      "The signed token payload is structurally encoded rather than delimiter-joined.",
+      "Malformed paths, capabilities, token fields, secrets, and non-finite time values fail closed.",
+      "Expired tokens refuse and valid request-bound tokens allow.",
+      "Python and Node share known digest and MAC vectors.",
+      "Node compares validated MAC bytes with crypto.timingSafeEqual."
+    ]
+  },
+  "invariants": [
+    "request body integrity is recursively canonical and language-stable",
+    "path and capability authority are bound inside a structured signed payload",
+    "non-finite expiry inputs never authorize",
+    "invalid token shape never authorizes",
+    "same-request replay prevention is not provided by this mechanism"
+  ],
   "nonclaims": [
     "no employer affiliation",
-    "no production deployment without receipt"
+    "no production deployment without receipt",
+    "no Vercel affiliation or adoption",
+    "same-request replay prevention is unsupported; callers needing single-use semantics require a separate tested consumption ledger"
   ],
   "donor_plan": {
     "mode": "none",
-    "donors": []
+    "donors": [],
+    "strategy": "INDEPENDENT_MECHANISM_PRESERVED"
   },
-  "frozen_at": "2026-08-10T04:12Z"
+  "promotion": {
+    "canonical_gate": "PASS",
+    "next_state": "EVOLVING",
+    "require_exact_source_sha": true,
+    "required_jobs": ["py", "node"],
+    "candidate_source_sha": "1b854a21c37767657b4c8622f69ad3b65ca0e6f5",
+    "candidate_workflow_run_id": 31450885196,
+    "proof_ref": "machine/canonical-position-proof.json",
+    "next_cursor": "add_single_use_nonce_consumption_ledger_and_delegated_capability_attenuation"
+  },
+  "canonical_position_ref": "machine/canonical-position.json",
+  "frozen_at": "2026-08-11T01:58:00Z"
 }
