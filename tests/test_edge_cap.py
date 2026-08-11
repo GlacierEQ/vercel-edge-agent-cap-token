@@ -53,6 +53,17 @@ class EdgeCapTests(unittest.TestCase):
         st, reason = self.mint.verify(structurally_different, "/api/agent", self.body, "a", 900.0)
         self.assertEqual((st, reason), (CapStatus.REFUSE, "BAD_MAC"))
 
+        path_tok = self.mint.mint("/api|agent", self.body, {"llm:complete"}, 1000.0)
+        path_changed = EdgeCapToken(
+            path="/api",
+            body_digest=path_tok.body_digest,
+            capabilities=path_tok.capabilities,
+            not_after=path_tok.not_after,
+            mac=path_tok.mac,
+        )
+        st, reason = self.mint.verify(path_changed, "/api", self.body, "llm:complete", 900.0)
+        self.assertEqual((st, reason), (CapStatus.REFUSE, "BAD_MAC"))
+
     def test_expired_fails_closed(self):
         st, reason = self.mint.verify(self.tok, "/api/agent", self.body, "llm:complete", 1000.01)
         self.assertEqual((st, reason), (CapStatus.REFUSE, "EXPIRED"))
