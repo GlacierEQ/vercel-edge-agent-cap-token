@@ -3,7 +3,7 @@
   "identity": {
     "repository_id": "GlacierEQ/vercel-edge-agent-cap-token",
     "family": "elite-estate",
-    "canonical_identity": "request-bound-edge-capability-token"
+    "apex_identity": "request-bound-edge-capability-token"
   },
   "current": {
     "state": "EVOLVING",
@@ -11,7 +11,7 @@
     "implemented": true,
     "tested": true,
     "deployed": false,
-    "canonical_position_resolved": true,
+    "apex_position_resolved": true,
     "external_claim_ceiling": "PROMOTED",
     "exact_head_proof": {
       "source_sha": "1b854a21c37767657b4c8622f69ad3b65ca0e6f5",
@@ -21,10 +21,10 @@
     }
   },
   "target": {
-    "purpose": "Issue short-lived request-bound capabilities whose authority fails closed when request path, recursively canonicalized body, capability set, MAC, or expiry does not match the signed token.",
-    "central_bottleneck": "Cross-runtime capability tokens are unsafe to canonicalize if nested body serialization, field encoding, time validation, or MAC comparison can diverge between implementations.",
-    "canonical_hardening_gate": [
-      "Python and Node recursively canonicalize equivalent nested JSON bodies to the same digest.",
+    "purpose": "Issue short-lived request-bound capabilities whose authority fails closed when request path, recursively apexized body, capability set, MAC, or expiry does not match the signed token.",
+    "central_bottleneck": "Cross-runtime capability tokens are unsafe to apexize if nested body serialization, field encoding, time validation, or MAC comparison can diverge between implementations.",
+    "apex_hardening_gate": [
+      "Python and Node recursively apexize equivalent nested JSON bodies to the same digest.",
       "Object key ordering does not change the body digest.",
       "The signed token payload is structurally encoded rather than delimiter-joined.",
       "Malformed paths, capabilities, token fields, secrets, and non-finite time values fail closed.",
@@ -34,7 +34,7 @@
     ]
   },
   "invariants": [
-    "request body integrity is recursively canonical and language-stable",
+    "request body integrity is recursively apex and language-stable",
     "path and capability authority are bound inside a structured signed payload",
     "non-finite expiry inputs never authorize",
     "invalid token shape never authorizes",
@@ -52,15 +52,15 @@
     "strategy": "INDEPENDENT_MECHANISM_PRESERVED"
   },
   "promotion": {
-    "canonical_gate": "PASS",
+    "apex_gate": "PASS",
     "next_state": "EVOLVING",
     "require_exact_source_sha": true,
     "required_jobs": ["py", "node"],
     "candidate_source_sha": "1b854a21c37767657b4c8622f69ad3b65ca0e6f5",
     "candidate_workflow_run_id": 31450885196,
-    "proof_ref": "machine/canonical-position-proof.json",
+    "proof_ref": "machine/apex-position-proof.json",
     "next_cursor": "add_single_use_nonce_consumption_ledger_and_delegated_capability_attenuation"
   },
-  "canonical_position_ref": "machine/canonical-position.json",
+  "apex_position_ref": "machine/apex-position.json",
   "frozen_at": "2026-08-11T01:58:00Z"
 }

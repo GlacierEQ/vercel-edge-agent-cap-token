@@ -1,11 +1,11 @@
 {
-  "schema": "glaciereq.canonical-position.v1",
+  "schema": "glaciereq.apex-position.v1",
   "repository": "GlacierEQ/vercel-edge-agent-cap-token",
-  "role": "CANONICAL_SPECIALIST",
+  "role": "APEX_SPECIALIST",
   "owns": "request_bound_edge_capability_authority",
   "mechanism": {
-    "body_integrity": "recursively canonical cross-runtime body digest",
-    "authority_binding": "versioned structured HMAC payload binds path, body digest, canonical capability set, and finite expiry",
+    "body_integrity": "recursively apex cross-runtime body digest",
+    "authority_binding": "versioned structured HMAC payload binds path, body digest, apex capability set, and finite expiry",
     "verification": "fail-closed token-shape and request validation with constant-time MAC comparison",
     "cross_runtime_equivalence": "Python and Node share exact digest and MAC vectors",
     "replay_boundary": "same-request single-use replay prevention is intentionally not provided by this mechanism"

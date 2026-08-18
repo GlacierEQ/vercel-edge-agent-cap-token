@@ -1,5 +1,5 @@
 {
-  "schema": "glaciereq.canonical-position-proof.v1",
+  "schema": "glaciereq.apex-position-proof.v1",
   "repository": "GlacierEQ/vercel-edge-agent-cap-token",
   "source_sha": "1b854a21c37767657b4c8622f69ad3b65ca0e6f5",
   "workflow": {
