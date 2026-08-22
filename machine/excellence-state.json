@@ -14,7 +14,7 @@
     "ADVERSARIAL_SURVIVAL": {"status": "PASS", "at": "2026-08-11T01:57Z", "evidence": "nested-body mutation, ordering, structured-field ambiguity, malformed input, expiry, and cross-runtime parity cases passed"},
     "OPERABLE_AND_OBSERVABLE": {"status": "PASS", "at": "2026-08-10T06:25Z", "evidence": "scripts/operate.py dual-run PASS; primary ok"},
     "PROOF_RECEIPT_BOUND": {"status": "PASS", "at": "2026-08-10T06:25Z", "evidence": "machine/proof_receipt.json bound"},
-    "AUTHORITY_BOUND": {"status": "PASS", "at": "2026-08-11T01:58Z", "evidence": "request-bound structured HMAC authority; same-request replay explicitly excluded without separate consumption ledger"},
+    "PROMOTION_AUTHORITY_RETIRED": {"status": "PASS", "at": "2026-08-22T01:10Z", "evidence": "Secret-bound promotion authority was retired; repository progression does not require a source-default or externally supplied promotion secret."},
     "PROJECTION_TRUTH_CLOSED": {"status": "PASS", "at": "2026-08-11T01:58Z", "evidence": "apex position and target contract preserve independent-reference ceiling, replay nonclaim, no Vercel affiliation/adoption, and no production deployment"},
     "APEX_POSITION_RESOLVED": {"status": "PASS", "at": "2026-08-11T01:58Z", "evidence": "machine/apex-position.json: APEX_SPECIALIST for request_bound_edge_capability_authority; exact candidate proof run 31450885196"},
     "EVOLUTION_CURSOR_DEFINED": {"status": "PASS", "at": "2026-08-11T01:58Z", "evidence": "next:add_single_use_nonce_consumption_ledger_and_delegated_capability_attenuation"},
@@ -25,7 +25,7 @@
     "deterministic_tests_pass": true,
     "adversarial_tests_pass": true,
     "runtime_behavior_observed": true,
-    "security_authority_bounded": true,
+    "progression_is_keyless": true,
     "proof_receipt_bound_to_sha": true,
     "reusable_capabilities_extracted": true,
     "projections_truth_consistent": true,
@@ -46,6 +46,10 @@
     {"at": "2026-08-11T01:58Z", "from": "PROMOTED", "to": "APEX", "gate": "APEX_POSITION_RESOLVED", "result": "PASS", "note": "Issue #1 hardening contract proven on exact candidate 1b854a21c37767657b4c8622f69ad3b65ca0e6f5 by run 31450885196."},
     {"at": "2026-08-11T01:58Z", "from": "APEX", "to": "EVOLVING", "gate": "EVOLUTION_CURSOR_DEFINED", "result": "PASS", "note": "Next evolution adds separate single-use replay consumption and delegated capability attenuation while preserving current fail-closed request binding."}
   ],
+  "promotion_authority": {
+    "status": "RETIRED_KEYLESS",
+    "reason": "Repository progression is not gated by a source-default or externally supplied promotion secret."
+  },
   "contract_ref": "machine/target-contract.json",
   "scores_ref": "machine/excellence-scores.json",
   "apex_position_ref": "machine/apex-position.json",
